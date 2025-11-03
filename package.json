@@ -1,6 +1,6 @@
 {
-  "name": "react-native-datawedge-intents",
-  "version": "0.1.8",
+  "name": "qls-react-native-datawedge-intents",
+  "version": "0.2.0",
   "description": "React Native Android module to interface with Zebra's DataWedge using Android Intents to control the barcode scanner and retrieve scanned data",
   "main": "index.js",
   "scripts": {
@@ -21,10 +21,10 @@
     "tc70",
     "data-capture"
   ],
-  "author": "Darryn Campbell",
+  "author": "QLS & Darryn Campbell",
   "license": "MIT",
-  "repository": "https://github.com/darryncampbell/react-native-datawedge-intents",
-  "bugs": "https://github.com/darryncampbell/react-native-datawedge-intents/issues",
+  "repository": "https://github.com/qlsgroup/react-native-datawedge-intents",
+  "bugs": "hhttps://github.com/qlsgroup/react-native-datawedge-intents/issues",
   "peerDependencies": {
     "react-native": ">=0.56"
   }

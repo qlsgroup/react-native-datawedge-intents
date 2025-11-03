@@ -1,4 +1,4 @@
-package com.darryncampbell.rndatawedgeintents;
+package com.qls.rndatawedgeintents;
 
 import android.content.Intent;
 import android.content.ComponentName;
@@ -7,6 +7,7 @@ import android.provider.CalendarContract.Calendars;
 import android.provider.CalendarContract.Events;
 import android.util.Log;
 import android.net.Uri;
+import android.os.Build;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -105,7 +106,11 @@ public class RNDataWedgeIntentsModule extends ReactContextBaseJavaModule impleme
 
         IntentFilter filter = new IntentFilter();
         filter.addAction(ACTION_ENUMERATEDLISET);
-        reactContext.registerReceiver(myEnumerateScannersBroadcastReceiver, filter);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            reactContext.registerReceiver(myEnumerateScannersBroadcastReceiver, filter, reactContext.RECEIVER_EXPORTED);
+        } else {
+           reactContext.registerReceiver(myEnumerateScannersBroadcastReceiver, filter);
+        }
 	    if (this.registeredAction != null)
           registerReceiver(this.registeredAction, this.registeredCategory);
           
@@ -357,7 +362,11 @@ public class RNDataWedgeIntentsModule extends ReactContextBaseJavaModule impleme
         filter.addAction(action);
         if (category != null && category.length() > 0)
           filter.addCategory(category);
-        this.reactContext.registerReceiver(scannedDataBroadcastReceiver, filter);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            this.reactContext.registerReceiver(genericReceiver, filter, Context.RECEIVER_EXPORTED);
+        } else {
+            this.reactContext.registerReceiver(genericReceiver, filter);
+        }
     }
 
     @ReactMethod
@@ -389,7 +398,11 @@ public class RNDataWedgeIntentsModule extends ReactContextBaseJavaModule impleme
                 }
             }
         }
-        this.reactContext.registerReceiver(genericReceiver, filter);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            this.reactContext.registerReceiver(genericReceiver, filter, Context.RECEIVER_EXPORTED);
+        } else {
+            this.reactContext.registerReceiver(genericReceiver, filter);
+        }
     }
 
     private void unregisterReceivers() {
@@ -409,7 +422,7 @@ public class RNDataWedgeIntentsModule extends ReactContextBaseJavaModule impleme
     }
 
     //  Broadcast receiver for the response to the Enumerate Scanner API
-    //  THIS METHOD IS DEPRECATED, you should enumerate scanners as shown in https://github.com/darryncampbell/DataWedgeReactNative/blob/master/App.js
+    //  THIS METHOD IS DEPRECATED, you should enumerate scanners as shown in https://github.com/qlsgroup/react-native-datawedge-intents/blob/master/App.js
     public BroadcastReceiver myEnumerateScannersBroadcastReceiver = new BroadcastReceiver() 
     {    
         @Override
@@ -421,7 +434,7 @@ public class RNDataWedgeIntentsModule extends ReactContextBaseJavaModule impleme
 
     //  Broadcast receiver for the DataWedge intent being sent from Datawedge.  
     //  Note: DW must be configured to send broadcast intents
-    //  THIS METHOD IS DEPRECATED, you should enumerate scanners as shown in https://github.com/darryncampbell/DataWedgeReactNative/blob/master/App.js
+    //  THIS METHOD IS DEPRECATED, you should enumerate scanners as shown in https://github.com/qlsgroup/react-native-datawedge-intents/blob/master/App.js
     public BroadcastReceiver scannedDataBroadcastReceiver = new BroadcastReceiver() 
     {    
         @Override

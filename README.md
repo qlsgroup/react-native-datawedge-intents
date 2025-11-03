@@ -15,7 +15,7 @@ This module is useful when developing React Native applications for Zebra mobile
 ### Installation
 
 ```bash
-npm install react-native-datawedge-intents --save
+npm install qls-react-native-datawedge-intents --save
 react-native link react-native-datawedge-intents 
 ```
 Note: as of ReactNative version 0.27 automatic installation of modules is supported via react-native link ... If you are running a version earlier than 0.26 then you will be required to manually install the module.  More detail on manual installation of a typical module can be found [here](https://github.com/Microsoft/react-native-code-push#plugin-installation-android---manual).
@@ -27,7 +27,7 @@ There are two samples available for this module:
 **Please see [RNDataWedgeIntentDemo](https://github.com/darryncampbell/RNDataWedgeIntentDemo) for a basic sample application that makes use of this module**, file [index.android.js](https://github.com/darryncampbell/RNDataWedgeIntentDemo/blob/master/index.android.js).  This application is a little dated now and is designed to work with version 0.0.2 of this module.
 
 ```javascript
-import DataWedgeIntents from 'react-native-datawedge-intents'
+import DataWedgeIntents from 'qls-react-native-datawedge-intents';
 ...
 //  Register a receiver for the barcode scans with the appropriate action
 DataWedgeIntents.registerReceiver('com.zebra.dwintents.ACTION', '');
